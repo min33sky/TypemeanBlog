@@ -6,8 +6,11 @@ import {
   RenderRichTextData,
 } from 'gatsby-source-contentful/rich-text';
 import { IGatsbyImageData } from 'gatsby-plugin-image';
+import Layout from '../components/Layout';
+import PostHeader from '../components/PostHeader';
+import PostBody from '../components/PostBody';
 
-export interface IBlogPosts {
+export interface IBlogPost {
   blog: {
     id: string;
     title: string;
@@ -18,35 +21,42 @@ export interface IBlogPosts {
       id: string;
       gatsbyImageData: IGatsbyImageData;
     };
+    markdown?: {
+      childMarkdownRemark: {
+        html;
+      };
+    };
   };
 }
 
-function BlogPostTemplate({ data, pageContext }: PageProps) {
-  console.log('ㅋㅋ: ', data);
+function BlogPostTemplate({ data: { blog }, pageContext }: PageProps<IBlogPost>) {
   console.log('컨텍스트: ', pageContext);
   return (
-    <div>
-      <p>블로그 포스트 템플릿</p>
-    </div>
+    <Layout>
+      <main>
+        <PostHeader title={blog.title} date={blog.date} coverImage={blog.coverImages[0]} />
+        <PostBody content={blog.body} markdown={blog.markdown?.childMarkdownRemark.html} />
+      </main>
+    </Layout>
   );
 }
 
 export const query = graphql`
-  query BlogPageQuery($slug: String) {
-    blog: allContentfulBlogs(filter: { slug: { eq: $slug } }) {
-      totalCount
-      edges {
-        node {
-          id
-          title
-          tags
-          coverImages {
-            id
-            gatsbyImageData(placeholder: BLURRED, layout: CONSTRAINED)
-          }
-          body {
-            raw
-          }
+  query PostQuery($slug: String) {
+    blog: contentfulBlogs(slug: { eq: $slug }) {
+      id
+      title
+      date
+      tags
+      coverImages {
+        gatsbyImageData(placeholder: BLURRED, layout: CONSTRAINED)
+      }
+      body {
+        raw
+      }
+      markdown {
+        childMarkdownRemark {
+          html
         }
       }
     }
