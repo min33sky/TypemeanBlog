@@ -3,6 +3,7 @@ import { IGatsbyImageData, GatsbyImage, getImage } from 'gatsby-plugin-image';
 import * as React from 'react';
 import Layout from '../components/Layout';
 import PostCard from '../components/PostCard';
+import ThemeToggle from '../components/ThemeToggle';
 
 export type HomeProps = {
   blogs: {
@@ -11,6 +12,8 @@ export type HomeProps = {
         id: string;
         title: string;
         slug: string;
+        date: string;
+        tags: string[];
         coverImages: {
           id: string;
           gatsbyImageData: IGatsbyImageData;
@@ -27,6 +30,7 @@ const HomePage = ({
 }: PageProps<HomeProps>) => {
   return (
     <Layout>
+      <ThemeToggle />
       <main className="container mx-auto">
         <div>
           {edges.map((blog) => {
@@ -39,13 +43,15 @@ const HomePage = ({
 };
 
 export const query = graphql`
-  {
+  query MyQuery {
     blogs: allContentfulBlogs {
       edges {
         node {
           id
           title
           slug
+          date(formatString: "YYYY년 MMMM Do, a hh:mm", locale: "ko")
+          tags
           coverImages {
             id
             gatsbyImageData
