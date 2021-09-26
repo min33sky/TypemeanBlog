@@ -7,10 +7,9 @@ interface ILayout {
 
 function Layout({ children }: ILayout) {
   return (
-    <div className="bg-gray-200 dark:bg-gray-800 dark:text-gray-200 ">
+    <div className="min-h-screen bg-gray-200 dark:bg-gray-800 dark:text-gray-200 ">
       <Header />
-      {/* <main className="">{children}</main> */}
-      <div>{children}</div>
+      <main className="container mx-auto">{children}</main>
     </div>
   );
 }

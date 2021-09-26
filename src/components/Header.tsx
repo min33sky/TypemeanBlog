@@ -34,21 +34,27 @@ function Header() {
         <nav>
           <div
             className={`flex flex-col h-0 md:h-auto md:text-sm overflow-hidden transition-all duration-300 md:flex md:flex-row w-full divide-y-2 md:divide-y-0 md:justify-between md:px-4  ${
-              showMenu ? 'h-80' : 'h-0'
+              showMenu ? 'h-60' : 'h-0'
             }`}
           >
             <div className="ml-4 divide-y-2 md:flex md:space-x-4 md:divide-y-0">
-              <Link className="block w-full py-4 text-2xl text-center cursor-pointer" to="/">
-                Home
+              <Link
+                className="block w-full py-4 text-2xl text-center cursor-pointer md:py-0"
+                to="/notes"
+              >
+                <p>Note</p>
               </Link>
-              <Link className="block w-full py-4 text-2xl text-center cursor-pointer" to="/recipes">
-                Recipes
+              <Link
+                className="block w-full py-4 text-2xl text-center cursor-pointer md:py-0"
+                to="/blogs"
+              >
+                <p>Posts</p>
               </Link>
-              <Link className="block w-full py-4 text-2xl text-center cursor-pointer" to="/tags">
-                Tags
-              </Link>
-              <Link className="block w-full py-4 text-2xl text-center cursor-pointer " to="/about">
-                About
+              <Link
+                className="block w-full py-4 text-2xl text-center cursor-pointer md:py-0"
+                to="/tags"
+              >
+                <p>Tags</p>
               </Link>
             </div>
           </div>
