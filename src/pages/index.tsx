@@ -30,9 +30,8 @@ const HomePage = ({
 }: PageProps<HomeProps>) => {
   return (
     <Layout>
-      <ThemeToggle />
       <main className="container mx-auto">
-        <div>
+        <div className="grid grid-cols-1 gap-x-2 md:grid-cols-2 lg:grid-cols-3">
           {edges.map((blog) => {
             return <PostCard key={blog.node.id} post={blog} />;
           })}

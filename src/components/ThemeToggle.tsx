@@ -8,11 +8,12 @@ export default function ThemeToggle() {
       {({ theme, toggleTheme }) => {
         if (theme == null) return null;
         return (
-          <>
-            <div onClick={() => toggleTheme(theme === 'light' ? 'dark' : 'light')}>
-              {theme === 'dark' ? <SunIcon className="h-8" /> : <MoonIcon className="h-8" />}
-            </div>
-          </>
+          <div
+            className="cursor-pointer hover:text-yellow-300 hover:fill-current"
+            onClick={() => toggleTheme(theme === 'light' ? 'dark' : 'light')}
+          >
+            {theme === 'dark' ? <SunIcon className="h-8" /> : <MoonIcon className="h-8" />}
+          </div>
         );
       }}
     </ThemeToggler>

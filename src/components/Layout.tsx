@@ -7,9 +7,10 @@ interface ILayout {
 
 function Layout({ children }: ILayout) {
   return (
-    <div className="dark:bg-gray-800 dark:text-gray-200">
+    <div className="bg-gray-200 dark:bg-gray-800 dark:text-gray-200 ">
       <Header />
-      <main className="">{children}</main>
+      {/* <main className="">{children}</main> */}
+      <div>{children}</div>
     </div>
   );
 }
