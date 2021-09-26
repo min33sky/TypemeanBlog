@@ -1,4 +1,5 @@
 import React from 'react';
+import Footer from './Footer';
 import Header from './Header';
 
 interface ILayout {
@@ -10,6 +11,7 @@ function Layout({ children }: ILayout) {
     <div className="min-h-screen bg-gray-200 dark:bg-gray-800 dark:text-gray-200 ">
       <Header />
       <main className="container mx-auto">{children}</main>
+      <Footer />
     </div>
   );
 }

@@ -5,7 +5,7 @@ export interface IPostHeader {
   title: string;
   date: string;
   coverImage: {
-    id: string;
+    id?: string;
     gatsbyImageData: IGatsbyImageData;
   };
 }
@@ -18,9 +18,9 @@ function PostHeader({ title, coverImage, date }: IPostHeader) {
         image={getImage(coverImage.gatsbyImageData)}
         className="w-full max-h-[400px]"
       />
-      <div className="absolute top-0 left-0 w-full h-full bg-black bg-opacity-30 text-gray-300 flex justify-center items-center flex-col">
-        <h1 className="font-extrabold text-8xl mb-4">{title}</h1>
-        <p className="font-bold text-2xl">{date}</p>
+      <div className="absolute top-0 left-0 flex flex-col items-center justify-center w-full h-full text-gray-300 bg-black bg-opacity-30">
+        <h1 className="mb-4 text-5xl font-extrabold md:text-8xl">{title}</h1>
+        <p className="text-2xl font-bold">{date}</p>
       </div>
     </div>
   );

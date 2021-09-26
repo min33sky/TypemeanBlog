@@ -1,8 +1,15 @@
 import { ArrowLeftIcon, ArrowRightIcon } from '@heroicons/react/outline';
 import { graphql, Link, PageProps } from 'gatsby';
 import { IGatsbyImageData } from 'gatsby-plugin-image';
+import {
+  ContentfulRichTextGatsbyReference,
+  RenderRichTextData,
+} from 'gatsby-source-contentful/rich-text';
 import React from 'react';
 import Layout from '../components/Layout';
+import PostBody from '../components/PostBody';
+import PostFooter from '../components/PostFooter';
+import PostHeader from '../components/PostHeader';
 
 interface IBlogNote {
   note: {
@@ -12,9 +19,7 @@ interface IBlogNote {
     coverImage: {
       gatsbyImageData: IGatsbyImageData;
     };
-    body: {
-      raw;
-    };
+    body: RenderRichTextData<ContentfulRichTextGatsbyReference>;
   };
 }
 
@@ -27,48 +32,14 @@ function BlogNoteTemplate({
   data: {
     note: { body, coverImage, date, id, title },
   },
-  pageContext,
+  pageContext: { next, previous },
 }: PageProps<IBlogNote, IPageContext>) {
-  console.log('페이지 컨텍스트: ', pageContext);
-
   return (
     <Layout>
       <article>
-        <h1>{title}</h1>
-        <p>{date}</p>
-
-        {/* 이전 글, 다음 글 */}
-        <nav className="flex justify-between">
-          <Link
-            to={`/notes/${pageContext.previous}`}
-            className="px-3 py-2 transition duration-200 ease-in bg-gray-300 rounded-lg shadow-sm w-60 dark:bg-gray-600 dark:hover:bg-opacity-40 hover:bg-gray-800 hover:text-gray-200 active:-translate-y-1"
-          >
-            <div className="flex items-center space-x-2 truncate">
-              <div>
-                <ArrowLeftIcon className="h-6" />
-              </div>
-              <div className="flex flex-col ">
-                <p>이전 글</p>
-                <p className="truncate">포스트 제목이다에요 aaaaaaaaaaaaaaaaaaaaaa</p>
-              </div>
-            </div>
-          </Link>
-
-          <Link
-            to={`/notes/${pageContext.next}`}
-            className="px-3 py-2 transition duration-200 ease-in bg-gray-300 rounded-lg shadow-sm w-60 dark:bg-gray-600 dark:hover:bg-opacity-40 hover:bg-gray-800 hover:text-gray-200 active:-translate-y-1"
-          >
-            <div className="flex items-center space-x-2">
-              <div className="flex flex-col flex-grow truncate">
-                <p>다음 글</p>
-                <p>포스트 제목이다에요 aaaaaaaaaaaaaaaaaaaaaaaaaaaaa</p>
-              </div>
-              <div>
-                <ArrowRightIcon className="h-6" />
-              </div>
-            </div>
-          </Link>
-        </nav>
+        <PostHeader coverImage={coverImage} title={title} date={date} />
+        <PostBody content={body} />
+        <PostFooter next={next} previous={previous} />
       </article>
     </Layout>
   );
@@ -79,7 +50,7 @@ export const query = graphql`
     note: contentfulNotes(slug: { eq: $slug }) {
       id
       title
-      date
+      date(fromNow: true, locale: "ko")
       coverImage {
         gatsbyImageData(placeholder: BLURRED, layout: CONSTRAINED)
       }

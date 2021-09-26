@@ -17,7 +17,7 @@ function Header() {
         <div className="container flex items-center justify-between ">
           <div className="flex items-center justify-between w-full">
             <Link to="/" className="cursor-pointer ">
-              <p className="text-2xl font-bold tracking-wider select-none">BLOG</p>
+              <p className="text-2xl font-bold tracking-wider select-none">TM BLOG</p>
             </Link>
 
             <section className="flex items-center">
