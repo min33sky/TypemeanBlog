@@ -1,3 +1,3 @@
-# Blog
+# TYPE MEAN BLOG
 
-> Gatsby 블로그
+> Gatsby, Tailwindcss, Contentful

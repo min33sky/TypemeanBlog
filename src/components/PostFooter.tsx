@@ -1,10 +1,13 @@
 import { ArrowLeftIcon, ArrowRightIcon } from '@heroicons/react/outline';
-import { Link } from 'gatsby';
+import { Link, navigate } from 'gatsby';
 import React from 'react';
 
 interface IPostFooter {
+  location: 'notes' | 'blogs';
   previous: string;
+  previousTitle: string;
   next: string;
+  nextTitle: string;
 }
 
 /**
@@ -13,49 +16,44 @@ interface IPostFooter {
  * @param param0
  * @returns
  */
-function PostFooter({ next, previous }: IPostFooter) {
-  /**
-   * TODO: 글의 제목을 가져와서 보여준다.
-   * ! truncate가 작동을 안한다 머지?
-   */
-
+function PostFooter({ location, next, previous, nextTitle, previousTitle }: IPostFooter) {
   return (
-    <footer className="flex justify-between">
-      <Link
-        to={previous && `/notes/${previous}`}
+    <footer className="flex justify-between mt-6">
+      <button
+        disabled={!previous}
+        onClick={() => navigate(`/${location}/${previous}`)}
         className={`px-3 py-2 transition duration-200 ease-in bg-gray-300 rounded-lg shadow-sm w-60 dark:bg-gray-600 dark:hover:bg-opacity-40 hover:bg-gray-800 hover:text-gray-200 active:-translate-y-1 ${
           !previous && 'cursor-not-allowed '
         }`}
       >
-        <div className="flex items-center space-x-2 truncate">
+        <div className="flex items-center space-x-2">
           <div>
             <ArrowLeftIcon className="h-6" />
           </div>
-          <div className="flex flex-col">
-            <p>이전 글</p>
-            <p className="line-clamp-1">
-              {previous ? '포스트 제목이다에요 aaaaaaaaaaaaaaaaaaaaaa' : '이전 글이 없어요.'}
-            </p>
+          <div className="flex flex-col w-48">
+            <p className="">이전 글</p>
+            <p className="truncate">{previousTitle}</p>
           </div>
         </div>
-      </Link>
+      </button>
 
-      <Link
-        to={next && `/notes/${next}`}
+      <button
+        disabled={!next}
+        onClick={() => navigate(`/${location}/${next}`)}
         className={`px-3 py-2 transition duration-200 ease-in bg-gray-300 rounded-lg shadow-sm w-60 dark:bg-gray-600 dark:hover:bg-opacity-40 hover:bg-gray-800 hover:text-gray-200 active:-translate-y-1 ${
-          !next && 'cursor-not-allowed'
+          !next && 'cursor-not-allowed '
         }`}
       >
         <div className="flex items-center space-x-2">
-          <div className="flex flex-col flex-grow truncate">
-            <p>다음 글</p>
-            <p>포스트 제목이다에요 aaaaaaaaaaaaaaaaaaaaaaaaaaaaa</p>
+          <div className="flex flex-col w-48">
+            <p className="">다음 글</p>
+            <p className="truncate">{nextTitle}</p>
           </div>
           <div>
             <ArrowRightIcon className="h-6" />
           </div>
         </div>
-      </Link>
+      </button>
     </footer>
   );
 }

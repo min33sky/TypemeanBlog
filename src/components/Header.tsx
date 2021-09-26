@@ -31,30 +31,21 @@ function Header() {
         </div>
 
         {/* SM: 햄버거 메뉴 & MD:오른쪽 네비게이션 */}
-        <nav>
+        <nav className="w-full md:w-auto">
           <div
-            className={`flex flex-col h-0 md:h-auto md:text-sm overflow-hidden transition-all duration-300 md:flex md:flex-row w-full divide-y-2 md:divide-y-0 md:justify-between md:px-4  ${
+            className={`flex select-none flex-col h-0 md:h-auto md:text-sm overflow-hidden transition-all duration-300 md:flex md:flex-row w-full divide-y-2 md:divide-y-0 md:justify-between md:px-4  ${
               showMenu ? 'h-60' : 'h-0'
             }`}
           >
-            <div className="ml-4 divide-y-2 md:flex md:space-x-4 md:divide-y-0">
-              <Link
-                className="block w-full py-4 text-2xl text-center cursor-pointer md:py-0"
-                to="/notes"
-              >
-                <p>Note</p>
+            <div className="flex flex-col divide-y-2 md:flex-row md:space-x-4 md:divide-y-0">
+              <Link className="text-2xl text-center cursor-pointer md:py-0" to="/notes">
+                <p className="py-4 transition ease-in hover:text-pink-400">Note</p>
               </Link>
-              <Link
-                className="block w-full py-4 text-2xl text-center cursor-pointer md:py-0"
-                to="/blogs"
-              >
-                <p>Posts</p>
+              <Link className="text-2xl text-center cursor-pointer md:py-0" to="/blogs">
+                <p className="py-4 transition ease-in hover:text-pink-400">Posts</p>
               </Link>
-              <Link
-                className="block w-full py-4 text-2xl text-center cursor-pointer md:py-0"
-                to="/tags"
-              >
-                <p>Tags</p>
+              <Link className="text-2xl text-center cursor-pointer md:py-0" to="/tags">
+                <p className="py-4 transition ease-in hover:text-pink-400">Tags</p>
               </Link>
             </div>
           </div>

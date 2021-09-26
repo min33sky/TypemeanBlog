@@ -26,7 +26,7 @@ function PostCard({
   return (
     <article className="mt-10 mb-4">
       <Link to={`/blogs/${slug}`}>
-        <div className="grid grid-cols-1 border rounded-md shadow-md md:grid-cols-2 bg-gray-50 dark:bg-gray-700 dark:border-none">
+        <div className="grid grid-cols-1 transition duration-200 ease-out border rounded-md shadow-lg md:grid-cols-2 hover:-translate-y-1 bg-gray-50 dark:bg-gray-700 dark:border-none">
           {coverImages.map((coverImage) => {
             const pathToImage = coverImage.gatsbyImageData;
             return (
@@ -39,14 +39,16 @@ function PostCard({
             );
           })}
 
-          <div className="mb-4 md:mb-0">
-            <h1 className="mb-4 text-3xl text-gray-800 dark:text-gray-200">{title}</h1>
+          <div className="px-4 py-5 md:mb-0">
+            <h1 className="mb-4 text-3xl font-bold text-gray-800 truncate dark:text-gray-200">
+              {title}
+            </h1>
             <p className="mb-4 text-sm">{date}</p>
-            <div className="flex flex-wrap items-center mb-2 space-x-1">
+            <div className="flex flex-wrap items-center space-x-2">
               {tags.map((tag, index) => (
                 <div
                   key={index}
-                  className="px-2 py-1 mb-2 text-sm font-light text-white bg-purple-500 rounded-full"
+                  className="px-2 py-1 mb-2 text-sm font-light text-gray-200 bg-indigo-700 rounded-full"
                 >
                   {tag}
                 </div>

@@ -8,12 +8,15 @@ exports.onPostBuild = ({ reporter }) => {
 // Create blog pages dynamically
 exports.createPages = async ({ graphql, actions }) => {
   const { createPage } = actions;
+
+  //* 페이지 템플릿
   const blogPostTemplate = path.resolve(`src/templates/blog-post.tsx`);
   const blogTagTemplate = path.resolve(`src/templates/blog-tag.tsx`);
   const blogNoteTemplate = path.resolve(`src/templates/blog-note.tsx`);
 
+  //* 페이지 생성에 필요한 쿼리
   const queryResult = await graphql(`
-    query MyQuery {
+    query CreatePagesQuery {
       notes: allContentfulNotes {
         edges {
           node {
@@ -21,9 +24,11 @@ exports.createPages = async ({ graphql, actions }) => {
           }
           next {
             slug
+            title
           }
           previous {
             slug
+            title
           }
         }
       }
@@ -35,9 +40,11 @@ exports.createPages = async ({ graphql, actions }) => {
           }
           next {
             slug
+            title
           }
           previous {
             slug
+            title
           }
         }
       }
@@ -52,6 +59,8 @@ exports.createPages = async ({ graphql, actions }) => {
     //* 슬러그에 해당하는 동적 페이지 생성
     const next = index === blogEdges.length - 1 ? null : edge.next.slug; // 다음 페이지
     const previous = index === 0 ? null : edge.previous.slug; // 이전 페이지
+    const nextTitle = edge.next ? edge.next.title : '다음 글이 없습니다.';
+    const previousTitle = edge.previous ? edge.previous.title : '이전 글이 없습니다.';
 
     createPage({
       path: `/blogs/${edge.node.slug}`,
@@ -59,7 +68,9 @@ exports.createPages = async ({ graphql, actions }) => {
       context: {
         slug: edge.node.slug,
         next,
+        nextTitle,
         previous,
+        previousTitle,
       },
     });
 
@@ -80,6 +91,8 @@ exports.createPages = async ({ graphql, actions }) => {
     //* 슬러그에 해당하는 동적 페이지 생성
     const next = index === noteEdges.length - 1 ? null : edge.next.slug; // 다음 페이지
     const previous = index === 0 ? null : edge.previous.slug; // 이전 페이지
+    const nextTitle = edge.next ? edge.next.title : '다음 글이 없습니다.';
+    const previousTitle = edge.previous ? edge.previous.title : '이전 글이 없습니다.';
 
     createPage({
       path: `/notes/${edge.node.slug}`,
@@ -87,7 +100,9 @@ exports.createPages = async ({ graphql, actions }) => {
       context: {
         slug: edge.node.slug,
         next,
+        nextTitle,
         previous,
+        previousTitle,
       },
     });
   });

@@ -41,7 +41,7 @@ function Notes({
 
   return (
     <Layout>
-      <h1 className="text-center">TM Note</h1>
+      <h1 className="mt-4 text-5xl font-bold text-center">TM NOTE</h1>
       {edges.map((edge) => (
         <NoteCard
           key={edge.node.id}
@@ -58,7 +58,7 @@ function Notes({
 
 export const query = graphql`
   query AllNotesQuery {
-    notes: allContentfulNotes {
+    notes: allContentfulNotes(sort: { fields: date, order: DESC }) {
       edges {
         node {
           id

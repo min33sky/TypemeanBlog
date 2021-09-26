@@ -25,21 +25,31 @@ interface IBlogNote {
 
 interface IPageContext {
   previous: string;
+  previousTitle: string;
   next: string;
+  nextTitle: string;
 }
 
 function BlogNoteTemplate({
   data: {
     note: { body, coverImage, date, id, title },
   },
-  pageContext: { next, previous },
+  pageContext: { next, previous, nextTitle, previousTitle },
 }: PageProps<IBlogNote, IPageContext>) {
+  console.log('제목 : ', nextTitle, previousTitle);
+
   return (
     <Layout>
-      <article>
+      <article className="mt-4">
         <PostHeader coverImage={coverImage} title={title} date={date} />
         <PostBody content={body} />
-        <PostFooter next={next} previous={previous} />
+        <PostFooter
+          location="notes"
+          next={next}
+          previous={previous}
+          nextTitle={nextTitle}
+          previousTitle={previousTitle}
+        />
       </article>
     </Layout>
   );

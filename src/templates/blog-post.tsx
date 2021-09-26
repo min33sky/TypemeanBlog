@@ -9,6 +9,7 @@ import { IGatsbyImageData } from 'gatsby-plugin-image';
 import Layout from '../components/Layout';
 import PostHeader from '../components/PostHeader';
 import PostBody from '../components/PostBody';
+import PostFooter from '../components/PostFooter';
 
 export interface IBlogPost {
   blog: {
@@ -29,13 +30,29 @@ export interface IBlogPost {
   };
 }
 
-function BlogPostTemplate({ data: { blog }, pageContext }: PageProps<IBlogPost>) {
-  console.log('컨텍스트: ', pageContext);
+interface IPostPageContext {
+  previous: string;
+  previousTitle: string;
+  next: string;
+  nextTitle: string;
+}
+
+function BlogPostTemplate({
+  data: { blog },
+  pageContext: { next, nextTitle, previous, previousTitle },
+}: PageProps<IBlogPost, IPostPageContext>) {
   return (
     <Layout>
       <main>
         <PostHeader title={blog.title} date={blog.date} coverImage={blog.coverImages[0]} />
         <PostBody content={blog.body} markdown={blog.markdown?.childMarkdownRemark.html} />
+        <PostFooter
+          location="blogs"
+          next={next}
+          nextTitle={nextTitle}
+          previous={previous}
+          previousTitle={previousTitle}
+        />
       </main>
     </Layout>
   );
