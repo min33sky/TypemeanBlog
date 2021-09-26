@@ -2,7 +2,7 @@
 /* Markdown Styles */
 /* Global */
 .markdown {
-  @apply leading-relaxed text-sm;
+  @apply text-sm leading-relaxed;
 }
 
 @screen sm {
@@ -20,13 +20,13 @@
 /* Headers */
 .markdown h1,
 .markdown h2 {
-  @apply text-xl my-6 font-semibold;
+  @apply my-6 text-xl font-semibold;
 }
 .markdown h3,
 .markdown h4,
 .markdown h5,
 .markdown h6 {
-  @apply text-lg my-3 font-semibold;
+  @apply my-3 text-lg font-semibold;
 }
 
 @screen sm {
@@ -71,7 +71,7 @@
 }
 /* Blockquotes */
 .markdown blockquote {
-  @apply p-2 mx-6 bg-gray-100 mb-4 border-l-4 border-gray-400 italic;
+  @apply p-2 mx-6 mb-4 italic bg-gray-100 border-l-4 border-gray-400;
 }
 .markdown blockquote > p {
   @apply mb-0;
@@ -96,3 +96,8 @@
   white-space: pre-line;
 }
 /* purgecss end ignore */
+
+/** 스크롤바 이동  */
+html {
+  scroll-behavior: smooth;
+}

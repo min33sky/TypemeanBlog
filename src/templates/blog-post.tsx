@@ -28,6 +28,14 @@ export interface IBlogPost {
       };
     };
   };
+  toc: {
+    childMarkdownRemark: {
+      frontmatter: {
+        slug;
+      };
+      tableOfContents;
+    };
+  };
 }
 
 interface IPostPageContext {
@@ -38,14 +46,18 @@ interface IPostPageContext {
 }
 
 function BlogPostTemplate({
-  data: { blog },
+  data: { blog, toc },
   pageContext: { next, nextTitle, previous, previousTitle },
 }: PageProps<IBlogPost, IPostPageContext>) {
   return (
     <Layout>
       <main>
         <PostHeader title={blog.title} date={blog.date} coverImage={blog.coverImages[0]} />
-        <PostBody content={blog.body} markdown={blog.markdown?.childMarkdownRemark.html} />
+        <PostBody
+          content={blog.body}
+          markdown={blog.markdown?.childMarkdownRemark.html}
+          toc={toc.childMarkdownRemark.tableOfContents}
+        />
         <PostFooter
           location="blogs"
           next={next}
@@ -75,6 +87,16 @@ export const query = graphql`
         childMarkdownRemark {
           html
         }
+      }
+    }
+    toc: contentfulBlogsMarkdownTextNode(
+      childMarkdownRemark: { frontmatter: { slug: { eq: $slug } } }
+    ) {
+      childMarkdownRemark {
+        frontmatter {
+          slug
+        }
+        tableOfContents
       }
     }
   }

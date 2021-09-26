@@ -25,7 +25,7 @@ function PostCard({
 }: IPostCard) {
   return (
     <article className="mt-10 mb-4">
-      <Link to={`/blogs/${slug}`}>
+      <Link to={`/blogs/${slug}/`}>
         <div className="grid grid-cols-1 transition duration-200 ease-out border rounded-md shadow-lg md:grid-cols-2 hover:-translate-y-1 bg-gray-50 dark:bg-gray-700 dark:border-none">
           {coverImages.map((coverImage) => {
             const pathToImage = coverImage.gatsbyImageData;

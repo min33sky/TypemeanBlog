@@ -39,13 +39,13 @@ function Header() {
           >
             <div className="flex flex-col divide-y-2 md:flex-row md:space-x-4 md:divide-y-0">
               <Link className="text-2xl text-center cursor-pointer md:py-0" to="/notes">
-                <p className="py-4 transition ease-in hover:text-pink-400">Note</p>
+                <p className="py-4 transition ease-in md:py-0 hover:text-pink-400">Note</p>
               </Link>
               <Link className="text-2xl text-center cursor-pointer md:py-0" to="/blogs">
-                <p className="py-4 transition ease-in hover:text-pink-400">Posts</p>
+                <p className="py-4 transition ease-in md:py-0 hover:text-pink-400">Posts</p>
               </Link>
               <Link className="text-2xl text-center cursor-pointer md:py-0" to="/tags">
-                <p className="py-4 transition ease-in hover:text-pink-400">Tags</p>
+                <p className="py-4 transition ease-in md:py-0 hover:text-pink-400">Tags</p>
               </Link>
             </div>
           </div>

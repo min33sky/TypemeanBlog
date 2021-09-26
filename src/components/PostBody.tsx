@@ -12,16 +12,17 @@ import { GatsbyImage, getImage } from 'gatsby-plugin-image';
 interface IPostBody {
   content: RenderRichTextData<ContentfulRichTextGatsbyReference>;
   markdown?: any;
+  toc?: any;
 }
 
-function PostBody({ content, markdown }: IPostBody) {
+function PostBody({ content, markdown, toc }: IPostBody) {
   const options: Options = {
     renderMark: {
       [MARKS.BOLD]: (text) => <span className="font-bold">{text}</span>,
       [MARKS.CODE]: (text) => <span className="markdown">{text}</span>,
     },
     renderNode: {
-      [BLOCKS.HEADING_1]: (node, children) => <h1 className="font-bold text-6xl">{children}</h1>,
+      [BLOCKS.HEADING_1]: (node, children) => <h1 className="text-6xl font-bold">{children}</h1>,
       [BLOCKS.PARAGRAPH]: (node, children) => <p>{children}</p>,
       [BLOCKS.EMBEDDED_ASSET]: (node) => {
         const asset = useContentfulImage(node.data.target.sys.id);
@@ -34,14 +35,22 @@ function PostBody({ content, markdown }: IPostBody) {
 
   //* 마크다운 포스트일 경우에 랜더링
   if (markdown) {
-    console.log('markdown: ', markdown);
     return (
-      <div
-        className="markdown"
-        dangerouslySetInnerHTML={{
-          __html: markdown,
-        }}
-      />
+      <div>
+        {/* 마크다운 Table Of Contents (TOC) */}
+
+        <div
+          className="fixed hidden text-sm w-36 xl:block left-6 top-64 "
+          dangerouslySetInnerHTML={{ __html: toc }}
+        ></div>
+        {/* 마크다운 본문 */}
+        <div
+          className="markdown"
+          dangerouslySetInnerHTML={{
+            __html: markdown,
+          }}
+        />
+      </div>
     );
   }
 
