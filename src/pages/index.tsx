@@ -1,10 +1,9 @@
 import { graphql, PageProps } from 'gatsby';
-import { IGatsbyImageData, GatsbyImage, getImage, StaticImage } from 'gatsby-plugin-image';
+import { getImage, IGatsbyImageData, StaticImage } from 'gatsby-plugin-image';
 import * as React from 'react';
 import Layout from '../components/Layout';
 import PostCard from '../components/PostCard';
 import SEO from '../components/SEO';
-import ThemeToggle from '../components/ThemeToggle';
 
 export type HomeProps = {
   blogs: {
@@ -32,6 +31,7 @@ const HomePage = ({
   return (
     <Layout>
       <SEO siteTitle="Home" />
+
       <main className="container mx-auto">
         {/* 히어로 이미지 */}
         <div className="relative">

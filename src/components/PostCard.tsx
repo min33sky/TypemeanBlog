@@ -2,7 +2,7 @@ import { Link } from 'gatsby';
 import { GatsbyImage, getImage, IGatsbyImageData } from 'gatsby-plugin-image';
 import React from 'react';
 
-interface IPostCard {
+export interface IPostCard {
   post: {
     node: {
       id: string;
