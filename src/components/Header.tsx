@@ -16,10 +16,14 @@ function Header() {
         {/* 헤더 */}
         <div className="container flex items-center justify-between ">
           <div className="flex items-center justify-between w-full">
+            {/* 로고 */}
             <Link to="/" className="cursor-pointer ">
-              <p className="text-2xl font-bold tracking-wider select-none">TM BLOG</p>
+              <p className="font-mono text-lg font-bold tracking-wider select-none">
+                &lt;TypeMean/&gt;
+              </p>
             </Link>
 
+            {/* 다크모드와 햄버거 메뉴 아이콘*/}
             <section className="flex items-center">
               <ThemeToggle />
               <MenuIcon
@@ -30,7 +34,7 @@ function Header() {
           </div>
         </div>
 
-        {/* SM: 햄버거 메뉴 & MD:오른쪽 네비게이션 */}
+        {/* sm: 햄버거 메뉴 & md:오른쪽 네비게이션 */}
         <nav className="w-full md:w-auto">
           <div
             className={`flex select-none flex-col h-0 md:h-auto md:text-sm overflow-hidden transition-all duration-300 md:flex md:flex-row w-full divide-y-2 md:divide-y-0 md:justify-between md:px-4  ${
@@ -38,14 +42,14 @@ function Header() {
             }`}
           >
             <div className="flex flex-col divide-y-2 md:flex-row md:space-x-4 md:divide-y-0">
-              <Link className="text-2xl text-center cursor-pointer md:py-0" to="/notes">
-                <p className="py-4 transition ease-in md:py-0 hover:text-pink-400">Note</p>
+              <Link className="text-2xl text-center cursor-pointer md:py-0 md:text-lg" to="/notes">
+                <p className="py-4 transition ease-out md:py-0 hover:text-pink-400">Note</p>
               </Link>
-              <Link className="text-2xl text-center cursor-pointer md:py-0" to="/blogs">
-                <p className="py-4 transition ease-in md:py-0 hover:text-pink-400">Posts</p>
+              <Link className="text-2xl text-center cursor-pointer md:py-0 md:text-lg" to="/blogs">
+                <p className="py-4 transition ease-out md:py-0 hover:text-pink-400">Posts</p>
               </Link>
-              <Link className="text-2xl text-center cursor-pointer md:py-0" to="/tags">
-                <p className="py-4 transition ease-in md:py-0 hover:text-pink-400">Tags</p>
+              <Link className="text-2xl text-center cursor-pointer md:py-0 md:text-lg" to="/tags">
+                <p className="py-4 transition ease-out md:py-0 hover:text-pink-400">Tags</p>
               </Link>
             </div>
           </div>

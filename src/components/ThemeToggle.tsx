@@ -13,9 +13,9 @@ export default function ThemeToggle() {
             onClick={() => toggleTheme(theme === 'light' ? 'dark' : 'light')}
           >
             {theme === 'dark' ? (
-              <SunIcon className="h-8 ease-in hover:text-yellow-500 hover:fill-current" />
+              <SunIcon className="h-5 ease-in hover:text-yellow-500 hover:fill-current" />
             ) : (
-              <MoonIcon className="h-8 ease-in hover:text-yellow-500 hover:fill-current" />
+              <MoonIcon className="h-5 ease-in hover:text-yellow-500 hover:fill-current" />
             )}
           </div>
         );

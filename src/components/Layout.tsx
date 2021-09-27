@@ -10,7 +10,7 @@ function Layout({ children }: ILayout) {
   return (
     <div className="min-h-screen bg-gray-200 dark:bg-gray-800 dark:text-gray-200 ">
       <Header />
-      <main className="container mx-auto md:max-w-screen-md">{children}</main>
+      <main>{children}</main>
       <Footer />
     </div>
   );

@@ -26,6 +26,11 @@ export interface IPosts {
   };
 }
 
+/**
+ * 포스트 목록 페이지
+ * /blogs
+ * @returns
+ */
 function Blogs() {
   const {
     notes: { edges },
@@ -52,10 +57,12 @@ function Blogs() {
 
   return (
     <Layout>
-      <h1 className="mt-4 text-5xl font-bold text-center">All Posts</h1>
-      {edges.map((edge) => (
-        <PostCard key={edge.node.id} post={edge} />
-      ))}
+      <div className="mx-auto sm:max-w-screen-sm md:max-w-screen-md lg:max-w-screen-lg">
+        <h1 className="mt-4 text-5xl font-bold text-center">All Posts</h1>
+        {edges.map((edge) => (
+          <PostCard key={edge.node.id} post={edge} />
+        ))}
+      </div>
     </Layout>
   );
 }

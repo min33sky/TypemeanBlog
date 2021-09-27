@@ -1,6 +1,6 @@
 {
   "name": "typemean-blog",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "private": true,
   "description": "My Blog",
   "author": "min33sky",
@@ -37,6 +37,7 @@
     "react-helmet": "^6.1.0"
   },
   "devDependencies": {
+    "@types/react-helmet": "^6.1.2",
     "autoprefixer": "^10.3.5",
     "gatsby-plugin-postcss": "^4.14.0",
     "postcss": "^8.3.7",

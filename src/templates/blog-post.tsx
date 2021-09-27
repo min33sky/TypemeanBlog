@@ -28,7 +28,7 @@ export interface IBlogPost {
       };
     };
   };
-  toc: {
+  toc?: {
     childMarkdownRemark: {
       frontmatter: {
         slug;
@@ -45,18 +45,23 @@ interface IPostPageContext {
   nextTitle: string;
 }
 
+/**
+ * 포스트 페이지 템플릿
+ * @param param0
+ * @returns
+ */
 function BlogPostTemplate({
   data: { blog, toc },
   pageContext: { next, nextTitle, previous, previousTitle },
 }: PageProps<IBlogPost, IPostPageContext>) {
   return (
     <Layout>
-      <main>
+      <main className="mx-auto sm:max-w-screen-sm md:max-w-screen-md lg:max-w-screen-lg">
         <PostHeader title={blog.title} date={blog.date} coverImage={blog.coverImages[0]} />
         <PostBody
           content={blog.body}
           markdown={blog.markdown?.childMarkdownRemark.html}
-          toc={toc.childMarkdownRemark.tableOfContents}
+          toc={toc?.childMarkdownRemark.tableOfContents}
         />
         <PostFooter
           location="blogs"
@@ -75,7 +80,7 @@ export const query = graphql`
     blog: contentfulBlogs(slug: { eq: $slug }) {
       id
       title
-      date
+      date(locale: "ko", fromNow: true)
       tags
       coverImages {
         gatsbyImageData(placeholder: BLURRED, layout: CONSTRAINED)

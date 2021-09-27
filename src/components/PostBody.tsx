@@ -37,12 +37,15 @@ function PostBody({ content, markdown, toc }: IPostBody) {
   if (markdown) {
     return (
       <div>
-        {/* 마크다운 Table Of Contents (TOC) */}
-
-        <div
-          className="fixed hidden text-sm w-36 xl:block left-6 top-64 "
-          dangerouslySetInnerHTML={{ __html: toc }}
-        ></div>
+        {
+          //* 마크다운 Table Of Contents (TOC)
+          toc && (
+            <div
+              className="fixed hidden text-sm w-36 xl:block left-6 top-64 "
+              dangerouslySetInnerHTML={{ __html: toc }}
+            ></div>
+          )
+        }
         {/* 마크다운 본문 */}
         <div
           className="markdown"
@@ -54,6 +57,7 @@ function PostBody({ content, markdown, toc }: IPostBody) {
     );
   }
 
+  //* 리치 에디터 랜더링
   return <article className="markdown">{renderRichText(content, options)}</article>;
 }
 

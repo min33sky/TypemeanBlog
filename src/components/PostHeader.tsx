@@ -10,6 +10,11 @@ export interface IPostHeader {
   };
 }
 
+/**
+ * 포스트 헤더
+ * @param param0
+ * @returns
+ */
 function PostHeader({ title, coverImage, date }: IPostHeader) {
   return (
     <div className="relative">
@@ -19,8 +24,8 @@ function PostHeader({ title, coverImage, date }: IPostHeader) {
         className="w-full max-h-[400px]"
       />
       <div className="absolute top-0 left-0 flex flex-col items-center justify-center w-full h-full text-gray-300 bg-black bg-opacity-30">
-        <h1 className="mb-4 text-5xl font-extrabold md:text-8xl">{title}</h1>
-        <p className="text-2xl font-bold">{date}</p>
+        <h1 className="mb-4 text-2xl font-extrabold md:text-4xl">{title}</h1>
+        <p className="text-xl font-bold">{date}</p>
       </div>
     </div>
   );

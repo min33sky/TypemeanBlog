@@ -41,17 +41,19 @@ function Notes({
 
   return (
     <Layout>
-      <h1 className="mt-4 text-5xl font-bold text-center">TM NOTE</h1>
-      {edges.map((edge) => (
-        <NoteCard
-          key={edge.node.id}
-          date={edge.node.date}
-          description={edge.node.description}
-          title={edge.node.title}
-          slug={edge.node.slug}
-          image={edge.node.coverImage.gatsbyImageData}
-        />
-      ))}
+      <div className="mx-auto sm:max-w-screen-sm md:max-w-screen-md lg:max-w-screen-lg">
+        <h1 className="mt-4 text-5xl font-bold text-center">TM NOTE</h1>
+        {edges.map((edge) => (
+          <NoteCard
+            key={edge.node.id}
+            date={edge.node.date}
+            description={edge.node.description}
+            title={edge.node.title}
+            slug={edge.node.slug}
+            image={edge.node.coverImage.gatsbyImageData}
+          />
+        ))}
+      </div>
     </Layout>
   );
 }
