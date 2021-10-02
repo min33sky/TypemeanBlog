@@ -1,7 +1,9 @@
 import { graphql, Link, useStaticQuery } from 'gatsby';
 import React from 'react';
 import Layout from '../components/Layout';
+import PieChart from '../components/PieChart';
 import SEO from '../components/SEO';
+import chartData from '../utils/chartData';
 import { getNumberByTag } from '../utils/getNumberByTag';
 
 export interface ITags {
@@ -39,6 +41,9 @@ function Tags() {
     <Layout>
       <SEO siteTitle="Tags" />
       <article>
+        <div className="container h-64 mx-auto">
+          <PieChart data={chartData()} />
+        </div>
         <div className="container grid gap-4 mx-auto mt-4 sm:grid-cols-2 md:grid-cols-3 ">
           {result.map(([tag, number], index) => (
             <Link

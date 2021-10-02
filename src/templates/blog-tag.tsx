@@ -26,13 +26,16 @@ function BlogTagTemplate({
   data: {
     blog: { edges },
   },
+  path,
 }: PageProps<IBlogTag>) {
-  console.log('edges: ', edges);
+  const tagName = path.split('/')[path.split('/').length - 1];
 
   return (
     <Layout>
-      <article>
-        <p>블로그 태그 템플릿</p>
+      <article className="container mx-auto">
+        <h1 className="mt-4 font-mono text-2xl font-bold first-letter:capitalize">
+          {tagName} : <span className="font-sans font-medium">{edges.length}개</span>
+        </h1>
         <div>
           {edges.map((edge) => (
             <PostCard key={edge.node.id} post={edge} />
