@@ -5,7 +5,7 @@ import { Helmet } from 'react-helmet';
 
 interface ISeo {
   siteTitle: string;
-  siteDescription: string;
+  siteDescription?: string;
 }
 
 function SEO({ siteTitle, siteDescription }: ISeo) {
