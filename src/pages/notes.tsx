@@ -3,6 +3,7 @@ import React from 'react';
 import Layout from '../components/Layout';
 import { IGatsbyImageData } from 'gatsby-plugin-image';
 import NoteCard from '../components/NoteCard';
+import SEO from '../components/SEO';
 
 export interface INote {
   notes: {
@@ -37,10 +38,9 @@ function Notes({
     notes: { edges },
   },
 }: PageProps<INote>) {
-  console.log('모든 노트: ', edges);
-
   return (
     <Layout>
+      <SEO siteTitle="Note" />
       <div className="mx-auto sm:max-w-screen-sm md:max-w-screen-md lg:max-w-screen-lg">
         <h1 className="mt-4 text-5xl font-bold text-center">TM NOTE</h1>
         {edges.map((edge) => (
