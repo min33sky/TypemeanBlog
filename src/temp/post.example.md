@@ -1,52 +1,48 @@
 ---
-title: tsconfig에서 paths 설정 시 eslint 에러 해결하기
-slug: tsconfig-paths-eslint
+title: gatsby 라우팅
+slug: how-to-route-in-gatsby
 author: MingtypE
 date: 2021-03-02 00:00:00 +0900
 categories: [Programming, React]
 tags: [react, typescript, eslint]
 ---
 
-# Intro
+# Routing?
 
-모듈을 불러올 때 **'../../../../Component'** 이런 식으로 상대 경로가 길어지는 경우가 많다. 길어진다고 성능에 지장을 주는건 아니지만 가독성이 떨어지므로 `tsconfig`의 `paths` 속성으로 별칭을 지어주면 절대경로처럼 사용할 수 있다.
+웹 애플리케이션에서 routing은 필수 요소이다. 내가 주로 사용하는 react에서는 react-router라는 서드파티 모듈을 사용해서 라우팅을 하고 next에서는 자체적으로 router를 제공한다. gatsby는 @react/router라는 모듈을 사용해서 라우팅을 한다. 그렇다고 이걸 직접 사용하진 않고 gatsby 모듈에서 불러와서 사용을 해야 정상 작동을 한다.
 
-### tsconfig.json 예시
+## Gatsby에서 라우팅하는 방법
 
-```json
-  "paths": {
-      "@hooks/*": ["hooks/*"],
-      "@components/*": ["components/*"],
-      "@pages/*": ["pages/*"],
-    }
+Gatsby는 react-router와 같이 라우트 컴포넌트를 이용하거나 라우팅할 수 있는 함수를 제공한다.
+
+### Link 컴포넌트를 이용한 라우팅
+
+```js
+import { Link } from 'gatsby';
+
+function Home() {
+  return (
+    <>
+      <Link to="/pathname"></Link>
+    </>
+  );
+}
 ```
 
-### 모듈을 불러올 때
+### navigate 메서드를 이용한 라우팅
 
-```ts
-import Login from '@page/Login';
+```js
+import { navigate } from 'gatsby';
+
+function Home() {
+  const handleRoute = () => {
+    navigate('/pathname');
+  };
+
+  return (
+    <>
+      <button onClick={handleRoute}>홈으로</button>
+    </>
+  );
+}
 ```
-
-## Error
-
-`eslint`를 사용한다면 위의 경우에서 **Unable to resolve path to module '@page/Login' eslint(import/no-unresolved)** 에러가 발생할 것이다.
-다음 과정을 통해 에러를 해결해 보겠다.
-
-- 모듈 설치
-
-[eslint-import-resolver-typescript](https://www.npmjs.com/package/eslint-import-resolver-typescript) 모듈을 설치한다.
-
-- .eslintrc.json에 다음 코드를 추가한다.
-
-```json
- "settings": {
-    "import/parsers": {
-      "@typescript-eslint/parser": [".ts", ".tsx"]
-    },
-    "import/resolver": {
-      "typescript": {}
-    }
- }
-```
-
-- 에러가 안사라졌다면 vscode 재실행

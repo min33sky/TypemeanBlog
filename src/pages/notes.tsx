@@ -4,6 +4,7 @@ import Layout from '../components/Layout';
 import { IGatsbyImageData } from 'gatsby-plugin-image';
 import NoteCard from '../components/NoteCard';
 import SEO from '../components/SEO';
+import FloatingNavButton from '../components/FloatingNavButton';
 
 export interface INote {
   notes: {
@@ -54,6 +55,9 @@ function Notes({
           />
         ))}
       </div>
+
+      {/* 네비게이션 버튼 */}
+      <FloatingNavButton />
     </Layout>
   );
 }

@@ -1,6 +1,6 @@
 import React, { useCallback } from 'react';
 import { graphql, PageProps, navigate } from 'gatsby';
-import { getImage, IGatsbyImageData, StaticImage } from 'gatsby-plugin-image';
+import { StaticImage } from 'gatsby-plugin-image';
 import Layout from '../components/Layout';
 import NoteHomeCard from '../components/NoteHomeCard';
 import PostCard from '../components/PostCard';
@@ -9,46 +9,7 @@ import FloatingNavButton from '../components/FloatingNavButton';
 import PieChart from '../components/PieChart';
 import chartData from '../utils/chartData';
 import { getNumberByTag } from '../utils/getNumberByTag';
-
-export type HomeProps = {
-  blogs: {
-    edges: {
-      node: {
-        id: string;
-        title: string;
-        slug: string;
-        date: string;
-        tags: string[];
-        coverImages: {
-          id: string;
-          gatsbyImageData: IGatsbyImageData;
-        }[];
-      };
-    }[];
-  };
-  notes: {
-    edges: {
-      node: {
-        id: string;
-        title: string;
-        slug: string;
-        description: string;
-        date: string;
-        coverImage: {
-          id: string;
-          gatsbyImageData: IGatsbyImageData;
-        };
-      };
-    }[];
-  };
-  tags: {
-    edges: {
-      node: {
-        tags: string[];
-      };
-    }[];
-  };
-};
+import { HomeProps } from '../typings/blog';
 
 /**
  * 메인 페이지
@@ -135,6 +96,7 @@ export const query = graphql`
           id
           title
           slug
+          category
           date(formatString: "YYYY년 MMMM Do, a hh:mm", locale: "ko")
           tags
           coverImages {

@@ -33,3 +33,47 @@ export interface IBlogTag {
     }[];
   };
 }
+
+/**
+ ** 메인 페이지 쿼리 타입
+ */
+export type HomeProps = {
+  blogs: {
+    edges: {
+      node: {
+        id: string;
+        title: string;
+        slug: string;
+        category: string;
+        date: string;
+        tags: string[];
+        coverImages: {
+          id: string;
+          gatsbyImageData: IGatsbyImageData;
+        }[];
+      };
+    }[];
+  };
+  notes: {
+    edges: {
+      node: {
+        id: string;
+        title: string;
+        slug: string;
+        description: string;
+        date: string;
+        coverImage: {
+          id: string;
+          gatsbyImageData: IGatsbyImageData;
+        };
+      };
+    }[];
+  };
+  tags: {
+    edges: {
+      node: {
+        tags: string[];
+      };
+    }[];
+  };
+};

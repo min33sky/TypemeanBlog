@@ -8,6 +8,7 @@ export interface IPostCard {
       id: string;
       title: string;
       slug: string;
+      description?: string;
       date: string;
       tags: string[];
       coverImages: {

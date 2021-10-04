@@ -13,11 +13,12 @@ exports.createPages = async ({ graphql, actions }) => {
   const blogPostTemplate = path.resolve(`src/templates/blog-post.tsx`);
   const blogTagTemplate = path.resolve(`src/templates/blog-tag.tsx`);
   const blogNoteTemplate = path.resolve(`src/templates/blog-note.tsx`);
+  const blogCategoryTemplate = path.resolve(`src/templates/blog-category.tsx`);
 
   //* 페이지 생성에 필요한 쿼리
   const queryResult = await graphql(`
     query CreatePagesQuery {
-      notes: allContentfulNotes {
+      notes: allContentfulNotes(sort: { fields: date, order: DESC }) {
         edges {
           node {
             slug
@@ -32,10 +33,11 @@ exports.createPages = async ({ graphql, actions }) => {
           }
         }
       }
-      blogs: allContentfulBlogs {
+      blogs: allContentfulBlogs(sort: { fields: date, order: DESC }) {
         edges {
           node {
             slug
+            category
             tags
           }
           next {
@@ -67,6 +69,18 @@ exports.createPages = async ({ graphql, actions }) => {
       component: blogPostTemplate,
       context: {
         slug: edge.node.slug,
+        next,
+        nextTitle,
+        previous,
+        previousTitle,
+      },
+    });
+
+    createPage({
+      path: `/blogs/category/${edge.node.category}`,
+      component: blogCategoryTemplate,
+      context: {
+        category: edge.node.category,
         next,
         nextTitle,
         previous,
