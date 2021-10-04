@@ -31,8 +31,6 @@ export default function useContentfulImage(assetUrl: string) {
     `
   );
 
-  console.log('포스트 내 이미지: ', assets);
-
   const asset = assets.edges.find((edge) => edge.node.contentful_id === assetUrl);
   return asset;
 }

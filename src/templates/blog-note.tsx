@@ -36,8 +36,6 @@ function BlogNoteTemplate({
   },
   pageContext: { next, previous, nextTitle, previousTitle },
 }: PageProps<IBlogNote, IPageContext>) {
-  console.log('제목 : ', nextTitle, previousTitle);
-
   return (
     <Layout>
       <article className="mx-auto mt-4 sm:max-w-screen-sm md:max-w-screen-md lg:max-w-screen-lg">

@@ -1,9 +1,6 @@
-import React from 'react';
-import { RecoilRoot } from 'recoil';
+import wrapWithRecoilRoot from './wrap-with-recoilroot';
 import './src/styles/global.css';
 import './src/styles/site.css';
 require('prismjs/themes/prism-tomorrow.css');
 
-export const wrapPageElement = ({ element, props }) => {
-  return <RecoilRoot {...props}>{element}</RecoilRoot>;
-};
+export const wrapRootElement = wrapWithRecoilRoot;

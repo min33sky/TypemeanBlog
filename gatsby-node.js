@@ -81,10 +81,6 @@ exports.createPages = async ({ graphql, actions }) => {
       component: blogCategoryTemplate,
       context: {
         category: edge.node.category,
-        next,
-        nextTitle,
-        previous,
-        previousTitle,
       },
     });
 

@@ -49,7 +49,7 @@ function BlogCategoryTemplate({
       <SEO siteTitle="Blogs: Category" />
       <div className="mx-auto sm:max-w-screen-sm md:max-w-screen-md lg:max-w-screen-lg">
         <h1 className="mt-4 mb-4 text-5xl font-bold text-center">{pageContext.category}</h1>
-        <CategoryBar categories={categories} />
+        {categories.length > 0 && <CategoryBar categories={categories} />}
 
         {edges.map((edge) => (
           <PostCard key={edge.node.id} post={edge} />
