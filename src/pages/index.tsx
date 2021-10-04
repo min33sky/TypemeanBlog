@@ -1,5 +1,5 @@
-import React from 'react';
-import { graphql, PageProps } from 'gatsby';
+import React, { useCallback } from 'react';
+import { graphql, PageProps, navigate } from 'gatsby';
 import { getImage, IGatsbyImageData, StaticImage } from 'gatsby-plugin-image';
 import Layout from '../components/Layout';
 import NoteHomeCard from '../components/NoteHomeCard';
@@ -63,7 +63,11 @@ const HomePage = ({
   },
 }: PageProps<HomeProps>) => {
   const tagsArray = getNumberByTag(tagEdges);
-  // console.log('tagsArray: ', tagsArray);
+
+  const handleRoute = useCallback((tagName: string) => {
+    navigate(`/tags/${tagName}`);
+  }, []);
+
   return (
     <Layout>
       <SEO siteTitle="Home" />
@@ -101,8 +105,8 @@ const HomePage = ({
 
         {/* 태그 차트 */}
         <h1 className="mt-6 text-2xl font-bold">The Main Tags on this Blog</h1>
-        <div className="mx-auto h-96 md:h-[500px] dark:text-black ">
-          <PieChart data={chartData(tagsArray)} />
+        <div className="mx-auto h-96 md:h-[500px] dark:text-black  ">
+          <PieChart data={chartData(tagsArray)} handleClick={handleRoute} />
         </div>
 
         {/* 포스트 */}

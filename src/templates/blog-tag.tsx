@@ -1,27 +1,15 @@
-import { useStaticQuery, graphql, PageProps } from 'gatsby';
-import { IGatsbyImageData } from 'gatsby-plugin-image';
+import { graphql, PageProps } from 'gatsby';
 import React from 'react';
 import Layout from '../components/Layout';
 import PostCard from '../components/PostCard';
+import { IBlogTag } from '../typings/blog';
 
-interface IBlogTag {
-  blog: {
-    edges: {
-      node: {
-        id: string;
-        title: string;
-        slug: string;
-        date: string;
-        tags: string[];
-        coverImages: {
-          id: string;
-          gatsbyImageData: IGatsbyImageData;
-        }[];
-      };
-    }[];
-  };
-}
-
+/**
+ * 테그 템플릿
+ * https://typemean.netlify.app/tags/:tagName
+ * @param param0
+ * @returns
+ */
 function BlogTagTemplate({
   data: {
     blog: { edges },

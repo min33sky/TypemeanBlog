@@ -8,9 +8,12 @@ import { ResponsivePie } from '@nivo/pie';
 // website examples showcase many properties,
 // you'll often use just a few of them.
 
-function PieChart({ data }: { data: any }) {
+function PieChart({ data, handleClick }: { data: any[]; handleClick: (path: string) => void }) {
   return (
     <ResponsivePie
+      onClick={(datum) => handleClick(datum.label as string)}
+      onMouseEnter={(datum, event) => (event.currentTarget.style.cursor = 'pointer')}
+      onMouseLeave={(datum, event) => (event.currentTarget.style.cursor = 'default')}
       data={data}
       margin={{ top: 40, right: 80, bottom: 80, left: 80 }}
       sortByValue={true}
