@@ -10,6 +10,7 @@ import Layout from '../components/Layout';
 import PostHeader from '../components/PostHeader';
 import PostBody from '../components/PostBody';
 import PostFooter from '../components/PostFooter';
+import Comment from '../components/Comment';
 
 export interface IBlogPost {
   blog: {
@@ -71,6 +72,9 @@ function BlogPostTemplate({
           previousTitle={previousTitle}
         />
       </main>
+
+      {/* 댓글창 */}
+      <Comment />
     </Layout>
   );
 }

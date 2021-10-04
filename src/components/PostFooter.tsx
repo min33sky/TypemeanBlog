@@ -18,7 +18,7 @@ interface IPostFooter {
  */
 function PostFooter({ location, next, previous, nextTitle, previousTitle }: IPostFooter) {
   return (
-    <footer className="flex justify-between mt-6">
+    <footer className="flex justify-between pt-10 mt-10 border-t-2 border-gray-500 ">
       <button
         disabled={!previous}
         onClick={() => navigate(`/${location}/${previous}`)}

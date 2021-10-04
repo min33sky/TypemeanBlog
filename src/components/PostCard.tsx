@@ -34,7 +34,7 @@ function PostCard({
                 key={coverImage.id}
                 image={getImage(pathToImage)}
                 alt="post-cover-image"
-                className="rounded-t-md md:rounded-bl-md md:h-40"
+                className="rounded-t-md md:rounded-bl-md md:rounded-tr-none md:h-40"
               />
             );
           })}

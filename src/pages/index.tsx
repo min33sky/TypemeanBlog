@@ -6,6 +6,9 @@ import NoteHomeCard from '../components/NoteHomeCard';
 import PostCard from '../components/PostCard';
 import SEO from '../components/SEO';
 import FloatingNavButton from '../components/FloatingNavButton';
+import PieChart from '../components/PieChart';
+import chartData from '../utils/chartData';
+import { getNumberByTag } from '../utils/getNumberByTag';
 
 export type HomeProps = {
   blogs: {
@@ -38,6 +41,13 @@ export type HomeProps = {
       };
     }[];
   };
+  tags: {
+    edges: {
+      node: {
+        tags: string[];
+      };
+    }[];
+  };
 };
 
 /**
@@ -49,8 +59,11 @@ const HomePage = ({
   data: {
     blogs: { edges },
     notes: { edges: noteEdges },
+    tags: { edges: tagEdges },
   },
 }: PageProps<HomeProps>) => {
+  const tagsArray = getNumberByTag(tagEdges);
+  // console.log('tagsArray: ', tagsArray);
   return (
     <Layout>
       <SEO siteTitle="Home" />
@@ -71,7 +84,7 @@ const HomePage = ({
 
         {/* 노트 */}
         <div className="mt-6">
-          <h1 className="text-2xl font-bold">TM Note</h1>
+          <h1 className="text-2xl font-bold">TM Latest Note</h1>
           {noteEdges.map((note) => {
             return (
               <NoteHomeCard
@@ -86,8 +99,14 @@ const HomePage = ({
           })}
         </div>
 
+        {/* 태그 차트 */}
+        <h1 className="mt-6 text-2xl font-bold">The Main Tags on this Blog</h1>
+        <div className="mx-auto h-96 md:h-[500px] dark:text-black ">
+          <PieChart data={chartData(tagsArray)} />
+        </div>
+
         {/* 포스트 */}
-        <h1 className="mt-6 text-2xl font-bold">TM POST</h1>
+        <h1 className="mt-6 text-2xl font-bold">TM Latest Post</h1>
         <div className="grid grid-cols-1 gap-x-2 md:grid-cols-2 xl:grid-cols-3 xl:gap-x-4">
           {edges.map((blog) => {
             return <PostCard key={blog.node.id} post={blog} />;
@@ -133,6 +152,13 @@ export const query = graphql`
             id
             gatsbyImageData
           }
+        }
+      }
+    }
+    tags: allContentfulBlogs {
+      edges {
+        node {
+          tags
         }
       }
     }
