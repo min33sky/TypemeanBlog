@@ -40,7 +40,7 @@ function BlogNoteTemplate({
 
   return (
     <Layout>
-      <article className="mt-4">
+      <article className="mx-auto mt-4 sm:max-w-screen-sm md:max-w-screen-md lg:max-w-screen-lg">
         <PostHeader coverImage={coverImage} title={title} date={date} />
         <PostBody content={body} />
         <PostFooter

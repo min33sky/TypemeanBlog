@@ -28,7 +28,7 @@ function PieChart({ data }: { data: any }) {
       arcLinkLabelsThickness={2}
       arcLinkLabelsColor={{ from: 'color' }}
       arcLabelsSkipAngle={10}
-      arcLabelsTextColor={{ from: 'color', modifiers: [['darker', 2]] }}
+      arcLabelsTextColor={{ from: 'color', modifiers: [['darker', 3]] }}
       defs={[
         {
           id: 'dots',

@@ -40,8 +40,8 @@ function Tags() {
   return (
     <Layout>
       <SEO siteTitle="Tags" />
-      <article>
-        <div className="container grid gap-4 mx-auto mt-4 sm:grid-cols-2 md:grid-cols-3 ">
+      <article className="mx-auto sm:max-w-screen-sm md:max-w-screen-md lg:max-w-screen-lg">
+        <div className="grid gap-4 mt-4 sm:grid-cols-2 md:grid-cols-3">
           {result.map(([tag, number], index) => (
             <Link
               key={index}

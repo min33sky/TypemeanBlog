@@ -32,7 +32,7 @@ function BlogTagTemplate({
 
   return (
     <Layout>
-      <article className="container mx-auto">
+      <article className="mx-auto sm:max-w-screen-sm md:max-w-screen-md lg:max-w-screen-lg">
         <h1 className="mt-4 font-mono text-2xl font-bold first-letter:capitalize">
           {tagName} : <span className="font-sans font-medium">{edges.length}개</span>
         </h1>
