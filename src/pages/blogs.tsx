@@ -1,11 +1,13 @@
 import { graphql, Link, useStaticQuery } from 'gatsby';
 import { IGatsbyImageData } from 'gatsby-plugin-image';
-import React from 'react';
+import React, { useEffect } from 'react';
 import CategoryBar from '../components/CategoryBar';
 import Layout from '../components/Layout';
 import PostCard from '../components/PostCard';
 import SEO from '../components/SEO';
 import { getCategory } from '../utils/getCagetory';
+import { useSetRecoilState } from 'recoil';
+import { categoryState } from '../store/category';
 
 export interface IPosts {
   notes: {
@@ -73,11 +75,13 @@ function Blogs() {
     }
   `);
 
+  const setCategories = useSetRecoilState(categoryState);
   const categories = getCategory(categoryEdges);
-
-  /**
-   * TODO: 카테고리를 페이지 컨텍스트에서 가져오는게 나을듯?
-   */
+  useEffect(() => {
+    if (categories) {
+      setCategories(categories);
+    }
+  }, []);
 
   return (
     <Layout>
