@@ -1,3 +1,3 @@
-# TYPE MEAN BLOG
+# TYPEMEAN BLOG
 
-> Gatsby, Tailwindcss, Contentful
+> Gatsby, Tailwindcss, Contentful, Recoil
