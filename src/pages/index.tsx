@@ -33,7 +33,7 @@ const HomePage = ({
     <Layout>
       <SEO siteTitle="Home" />
 
-      <main className="container mx-auto">
+      <article>
         {/* 히어로 이미지 */}
         <div className="relative">
           <StaticImage
@@ -77,7 +77,7 @@ const HomePage = ({
             return <PostCard key={blog.node.id} post={blog} />;
           })}
         </div>
-      </main>
+      </article>
 
       {/* 네비게이션 버튼 */}
       <FloatingNavButton />

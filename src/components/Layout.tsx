@@ -9,7 +9,7 @@ function Layout({ children }: ILayout) {
   return (
     <div className="min-h-screen bg-gray-200 dark:bg-gray-800 dark:text-gray-200 ">
       <Header />
-      <main>{children}</main>
+      <main className="container px-2 mx-auto md:px-8">{children}</main>
       <Footer />
     </div>
   );

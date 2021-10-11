@@ -11,8 +11,8 @@ function Header() {
   const [showMenu, setShowMenu] = useState(false); //* 햄버거 메뉴를 보여줄 지 유무
 
   return (
-    <header className="sticky top-0 z-50 px-2 bg-gray-100 dark:bg-gray-900 md:px-0 ">
-      <div className="container flex flex-col items-center py-4 mx-auto md:flex-row md:justify-between">
+    <header className="sticky top-0 z-50 bg-gray-100 dark:bg-gray-900 md:px-0 ">
+      <div className="container flex flex-col items-center px-2 py-4 mx-auto md:px-8 md:flex-row md:justify-between">
         {/* 헤더 */}
         <div className="container flex items-center justify-between ">
           <div className="flex items-center justify-between w-full">
