@@ -24,7 +24,7 @@ function PostFooter({ location, next, previous, nextTitle, previousTitle }: IPos
           disabled={!previous}
           onClick={() => navigate(`/${location}/${previous}`)}
           className={`px-2 py-2 transition duration-200 ease-in bg-gray-300 rounded-lg shadow-sm w-52 dark:bg-gray-600 dark:hover:bg-opacity-40 hover:bg-gray-800 hover:text-gray-200 active:-translate-y-1 ${
-            !previous && 'cursor-not-allowed '
+            !previous && 'cursor-not-allowed  '
           }`}
         >
           <div className="flex items-center space-x-2">

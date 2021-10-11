@@ -5,9 +5,9 @@ import CategoryBar from '../components/CategoryBar';
 import Layout from '../components/Layout';
 import PostCard from '../components/PostCard';
 import SEO from '../components/SEO';
-import { getCategory } from '../utils/getCagetory';
 import { useSetRecoilState } from 'recoil';
 import { categoryState } from '../store/category';
+import { getCategory } from '../utils/getCategory';
 
 export interface IPosts {
   notes: {
