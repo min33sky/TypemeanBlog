@@ -1,43 +1,44 @@
 ---
-title: Update #4
-slug: update-4
+title: Gatsby에서 recoil 사용을 위한 설정하기
+slug: how-to-use-recoil-in-gatsby
 author: MingtypE
 date: 2021-03-02 00:00:00 +0900
 categories: [Programming, React]
 tags: [react, typescript, eslint]
 ---
 
-# 업데이트 4
+# Gatsby에서 Recoil 설정하기
 
 ---
 
-## 상태 관리 모듈 추가
+## RecoilRoot을 상단에 위치시키기
 
-블로그 기능을 추가하다 보니 중복 쿼리를 하는 경우가 계속 생겨서 상태 관리 모듈 추가를 결정했다.
+상태 관리를 위해서는 redux의 Provider처럼 recoil도 RecoilRoot가 필요하다. gatsby는 일반 react의 index.js와 같이 RecoilRoot를 적용할 부분이 보이질 않는다. 검색을 해보니 gatsby-browser.js에 RecoilRoot를 리턴하는 `wrapPageElement` 함수를 export하면 해결된다고 나온다. 그리고 실행되는 것을 확인했다.
 
-## 추가 이유
+## Build시 에러
 
-중복 쿼리를 한다고 이 블로그 규모에서 성능에 지장이 있는 것은 아니지만 언젠간 필요할 것 같았다. 상태 관리 모듈은 현시점에서 선택권이 많이 생겼다. 과거에는 닥치고 **Redux**였지만 mobx, recoil, zustand, zotai등등 훌륭한 대체재가 많이 나왔다. **Facebook**에서 제공하는 **Context API**도 있지만 이건 상태관리 모듈이라 보기엔 애매하다. `useState`, `useReducer`가 상태관리를 하고 **Context API**는 의존성 주입 같은 역할을 한다고 볼 수 있다. 거기다 리랜더링도 신경써야해서 불편하다.
-
-## Recoil
-
-**Recoil** 역시 facebook에서 만든 상태관리 모듈이다. 아직 정식버전은 아니지만 블로그 상태관리에는 별 문제가 없을 것 같아서 선택했다.
-
-## Gatsby와 Recoil
-
-Recoil을 사용하기 위해선 Redux의 Provider와 같이 상위 컴포넌트에 래퍼 컴포넌트를 둬야한다. 근데 Gatsby에서는 기존 react와 달리 **index.js**가 존재하지 않아 당황스럽다.
-해결 방법은 당연히 있다. 최상위 폴더에 `gatsby-browser.js` 파일이 있다. 이곳이 entry 파일 역할을 하므로 여기서 `css`나 `provider` 같은 처리를 해줄 수 있다.
+빌드를 하니 상태 관리를 하려면 RecoilRoot를 상위에 두세요란 에러가 뜬다. 개발 모드일땐 전혀 문제가 없었다. 삽질 좀 하다가 gatsby와 redux의 결합에 관한 공식 예시를 보고 해결책을 찾았다. 해결책은 다음과 같다.
 
 ```js
-// gatsby-browser.js
+// wrap-with-recoilroot.tsx
 import React from 'react';
 import { RecoilRoot } from 'recoil';
 
-export const wrapPageElement = ({ element, props }) => {
-  return <RecoilRoot {...props}>{element}</RecoilRoot>;
+export default ({ element }) => {
+  return <RecoilRoot>{element}</RecoilRoot>;
 };
 ```
 
-## 마무리
+```js
+// gatsby-browser.js
+import wrapWithRecoilRoot from './wrap-with-recoilroot';
 
-아직 블로그에 별게 없기때문에 무거운 redux보다 recoil을 괜찮은 선택이었다. devtools가 없는게 아쉽긴 하다.
+export const wrapRootElement = wrapWithRecoilRoot;
+```
+
+```js
+// gatsby-ssr.js
+import wrapWithRecoilRoot from './wrap-with-recoilroot';
+
+export const wrapRootElement = wrapWithRecoilRoot;
+```
