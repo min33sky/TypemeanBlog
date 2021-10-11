@@ -23,7 +23,7 @@ function PostFooter({ location, next, previous, nextTitle, previousTitle }: IPos
         <button
           disabled={!previous}
           onClick={() => navigate(`/${location}/${previous}`)}
-          className={`px-2 py-2 transition duration-200 ease-in bg-gray-300 rounded-lg shadow-sm w-52 dark:bg-gray-600 dark:hover:bg-opacity-40 hover:bg-gray-800 hover:text-gray-200 active:-translate-y-1 ${
+          className={`px-2 py-2 transition duration-200 ease-in bg-gray-300 rounded-lg shadow-sm w-40 md:w-52 dark:bg-gray-600 dark:hover:bg-opacity-40 hover:bg-gray-800 hover:text-gray-200 active:-translate-y-1 ${
             !previous && 'cursor-not-allowed  '
           }`}
         >
@@ -31,7 +31,7 @@ function PostFooter({ location, next, previous, nextTitle, previousTitle }: IPos
             <div>
               <ArrowLeftIcon className="h-6" />
             </div>
-            <div className="flex flex-col w-40 text-sm">
+            <div className="flex flex-col text-sm w-28 md:w-40">
               <p className="font-bold">이전 글</p>
               <p className="pt-2 text-xs truncate">{previousTitle}</p>
             </div>
@@ -41,12 +41,12 @@ function PostFooter({ location, next, previous, nextTitle, previousTitle }: IPos
         <button
           disabled={!next}
           onClick={() => navigate(`/${location}/${next}`)}
-          className={`px-2 py-2 transition duration-200 ease-in bg-gray-300 rounded-lg shadow-sm w-52 dark:bg-gray-600 dark:hover:bg-opacity-40 hover:bg-gray-800 hover:text-gray-200 active:-translate-y-1 ${
+          className={`px-2 py-2 transition duration-200 ease-in bg-gray-300 rounded-lg shadow-sm w-40 md:w-52 dark:bg-gray-600 dark:hover:bg-opacity-40 hover:bg-gray-800 hover:text-gray-200 active:-translate-y-1 ${
             !next && 'cursor-not-allowed '
           }`}
         >
           <div className="flex items-center space-x-2">
-            <div className="flex flex-col w-40 text-sm">
+            <div className="flex flex-col text-sm w-28 md:w-40">
               <p className="font-bold">다음 글</p>
               <p className="pt-2 text-xs truncate">{nextTitle}</p>
             </div>
